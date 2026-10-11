@@ -251,7 +251,8 @@ mod tests {
     async fn qmp_serve_handshakes_and_echoes_greeting() {
         let (server_sock, client_sock) = UnixStream::pair().unwrap();
         let (s_rd, s_wr) = server_sock.into_split();
-        let serve = tokio::spawn(async move { qmp_serve(s_rd, s_wr, &test_greeting(), None).await });
+        let serve =
+            tokio::spawn(async move { qmp_serve(s_rd, s_wr, &test_greeting(), None).await });
         let mut client = client_sock;
         let greeting = recv_value(&mut client).await;
         assert_eq!(greeting["QMP"]["capabilities"], json!(["oob"]));
@@ -264,7 +265,8 @@ mod tests {
     async fn qmp_serve_rejects_other_commands_during_handshake() {
         let (server_sock, client_sock) = UnixStream::pair().unwrap();
         let (s_rd, s_wr) = server_sock.into_split();
-        let serve = tokio::spawn(async move { qmp_serve(s_rd, s_wr, &test_greeting(), None).await });
+        let serve =
+            tokio::spawn(async move { qmp_serve(s_rd, s_wr, &test_greeting(), None).await });
         let mut client = client_sock;
         let _greeting = recv_value(&mut client).await;
         send_value(&mut client, &json!({"execute": "query-version"})).await;

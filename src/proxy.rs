@@ -340,7 +340,9 @@ mod tests {
         let (mock_rd, mock_wr) = mock_sock.into_split();
         let greeting = test_greeting();
         let serve =
-            tokio::spawn(async move { qmp_serve(mock_rd, mock_wr, &greeting, None).await.unwrap() });
+            tokio::spawn(
+                async move { qmp_serve(mock_rd, mock_wr, &greeting, None).await.unwrap() },
+            );
         let (proxy_rd, proxy_wr) = proxy_sock.into_split();
         let (reader, writer, greeting) = qmp_connect(proxy_rd, proxy_wr, None).await.unwrap();
         let mock = serve.await.unwrap();

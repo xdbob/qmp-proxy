@@ -60,10 +60,8 @@ impl TestSocket {
     pub fn unique() -> Self {
         let id = SOCK_COUNTER.fetch_add(1, Ordering::Relaxed);
         Self {
-            path: std::env::temp_dir().join(format!(
-                "qmp-proxy-test-{}-{id}.sock",
-                std::process::id()
-            )),
+            path: std::env::temp_dir()
+                .join(format!("qmp-proxy-test-{}-{id}.sock", std::process::id())),
         }
     }
 
