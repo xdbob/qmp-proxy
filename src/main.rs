@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 mod matcher;
 mod protocol;
 mod proxy;

@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 use bytes::{Buf, BytesMut};
 use serde_json::Value;
 use thiserror::Error;

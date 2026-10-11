@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 use std::collections::HashSet;
 use std::hash::{Hash, Hasher};
 use std::io::ErrorKind::UnexpectedEof;

@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 use std::matches;
 
 use log::{debug, warn};
