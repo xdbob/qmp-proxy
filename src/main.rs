@@ -9,6 +9,7 @@ mod qmp_decoder;
 #[cfg(test)]
 mod test_util;
 
+use std::env;
 use std::path::{Path, PathBuf};
 
 use clap::Parser;
@@ -37,6 +38,10 @@ struct Cli {
 
 #[tokio::main(flavor = "current_thread")]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    if env::var("RUST_LOG").is_err() {
+        unsafe { env::set_var("RUST_LOG", "info") };
+    }
+
     env_logger::init();
     let cli = Cli::parse();
 
